@@ -28,9 +28,11 @@ const parts = pages
       {
         parts.map((part, partIndex) => (
           <section class="py-2">
-            <h2 class="text-xl font-bold pb-2">
-              {!!partIndex && `Part ${partIndex}.`} {part.frontmatter.title}
-            </h2>
+            <a href={part.url}>
+              <h2 class="text-xl font-bold pb-2">
+                {!!partIndex && `Part ${partIndex}.`} {part.frontmatter.title}
+              </h2>
+            </a>
             {part.chapters.map((chapter) => (
               <a href={chapter.url} class="block py-1 text-md font-bold">
                 <div class="inline-block w-6">{chapter.index}</div>

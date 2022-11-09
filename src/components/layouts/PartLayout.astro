@@ -1,10 +1,50 @@
 ---
+import BaseLayout from "./BaseLayout.astro";
+
 export interface PartFrontmatter {
     title: string;
     description: string;
 }
+
+const { frontmatter, url } = Astro.props;
+
+const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.md");
+let chapterIndex = 1;
+const parts = pages
+    .filter((page) => page.url.split("/").length === 2)
+    .map((part) => ({
+        ...part,
+        chapters: pages
+            .filter(
+                (page) => page.url.startsWith(part.url) && page.url !== part.url
+            )
+            .map((chapter) => ({
+                ...chapter,
+                index: chapterIndex++,
+            })),
+    }));
+
+const part = parts.find((part) => part.url === url);
+const chapters = part.chapters;
 ---
 
-<main>
-    <slot />
-</main>
+<BaseLayout>
+    <nav class="pb-4 px-2 md:px-0">
+        <a class="font-bold" href="/">Aligning AI</a>
+    </nav>
+    <main class="max-w-screen-md mx-auto p-2 md:p-8">
+        <h1 class="text-2xl font-bold pb-2">{frontmatter.title}</h1>
+        <slot />
+
+        <div class="gap-2">
+            {
+                chapters.map((chapter) => (
+                    <a class="block font-bold" href={chapter.url}>
+                        <div class="inline-block w-6">{chapter.index}</div>
+                        {chapter.frontmatter.title}
+                    </a>
+                ))
+            }
+        </div>
+    </main>
+</BaseLayout>
