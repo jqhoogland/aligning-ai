@@ -24,42 +24,44 @@ const lastUpdatedDate = new Date(lastUpdated).toLocaleDateString();
 ---
 
 <hr />
-<div class="grid grid-cols-3 container">
-    {
-        !!authors.length && (
-            <section id="authors">
-                <h3 class="font-bold text-xs">Authors</h3>
-                <ul>
-                    {authors.map(({ name, url }) => (
-                        <li>
-                            <a href={url}>{name}</a>
-                        </li>
-                    ))}
-                </ul>
-            </section>
-        )
-    }
-    {
-        !!affiliations.length && (
-            <section id="affiliations">
-                <h3 class="font-bold text-xs">Affiliations</h3>
-                <ul>
-                    {affiliations.map(({ name, url }) => (
-                        <li>
-                            <a href={url}>{name}</a>
-                        </li>
-                    ))}
-                </ul>
-            </section>
-        )
-    }
-    {
-        !!lastUpdated && (
-            <section id="updated">
-                <h3 class="font-bold text-xs">Last Updated</h3>
-                <a href={getGithubURL(url, "commits")}>{lastUpdatedDate}</a>
-            </section>
-        )
-    }
+<div class="container">
+    <div class="grid grid-cols-3 text-xs">
+        {
+            !!authors.length && (
+                <section id="authors">
+                    <h3 class="font-bold text-xs">Authors</h3>
+                    <ul>
+                        {authors.map(({ name, url }) => (
+                            <li>
+                                <a href={url}>{name}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )
+        }
+        {
+            !!affiliations.length && (
+                <section id="affiliations">
+                    <h3 class="font-bold text-xs">Affiliations</h3>
+                    <ul>
+                        {affiliations.map(({ name, url }) => (
+                            <li>
+                                <a href={url}>{name}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )
+        }
+        {
+            !!lastUpdated && (
+                <section id="updated">
+                    <h3 class="font-bold text-xs">Last Updated</h3>
+                    <a href={getGithubURL(url, "commits")}>{lastUpdatedDate}</a>
+                </section>
+            )
+        }
+    </div>
 </div>
 <hr />

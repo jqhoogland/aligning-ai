@@ -69,9 +69,7 @@ const next =
 
 <BaseLayout>
     <div class="container">
-        <nav class="py-2"></nav>
-
-        <nav class="flex">
+        <nav class="flex pb-4">
             {
                 prev?.frontmatter?.published ? (
                     <a href={prev.url} class="w-6 h-6 md:-ml-6">
@@ -97,7 +95,7 @@ const next =
                 )
             }
         </nav>
-        <h1 class="text-3xl font-bold flex-1">
+        <h1 class="text-4xl font-bold flex-1">
             {thisChapterIndex}
             {frontmatter.title}
         </h1>
