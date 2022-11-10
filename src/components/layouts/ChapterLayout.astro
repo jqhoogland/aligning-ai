@@ -7,6 +7,7 @@ import { GITHUB_NEW_ISSUE_URL } from "~/data/constants";
 import { createBibTex } from "~/utils/citations";
 import Code from "../Code.astro";
 import Part from "../Part.astro";
+import Icon from "astro-icon";
 
 export interface ChapterFrontmatter {
     title: string;
@@ -38,6 +39,8 @@ const parts = pages
             })),
     }));
 
+const allChapters = parts.flatMap((part) => part.chapters);
+
 const part = parts.find((part) => part.url.startsWith(parentUrl));
 const thisChapterIndex = part.chapters.find(
     (chapter) => chapter.url === url
@@ -56,18 +59,48 @@ const affiliations: { name: string; url: string }[] = (
     name: Object.keys(affiliation)[0],
     url: Object.values(affiliation)[0],
 }));
+
+const prevURL =
+    thisChapterIndex > 1 ? allChapters[thisChapterIndex - 2].url : "";
+const nextURL =
+    thisChapterIndex < allChapters.length
+        ? allChapters[thisChapterIndex].url
+        : "";
 ---
 
 <BaseLayout>
     <div class="container">
-        <nav class="pb-6">
-            <a class="font-bold" href="/">Aligning AI</a> &gt;
-            <a href={parentUrl}>{part?.frontmatter?.title}</a>
+        <nav class="py-2">
+            <a class="font-bold text-sm" href="/">Aligning AI</a> &gt;
+            <a class="font-bold text-sm" href={part.url}
+                >{part.frontmatter?.title}</a
+            >
         </nav>
-        <h1 class="text-2xl font-bold">
-            {thisChapterIndex}
-            {frontmatter.title}
-        </h1>
+
+        <div class="flex">
+            {
+                prevURL ? (
+                    <a href={prevURL} class="w-8 h-8">
+                        <Icon name="ic:outline-chevron-left" />
+                    </a>
+                ) : (
+                    <div />
+                )
+            }
+            <h1 class="text-3xl font-bold flex-1">
+                {thisChapterIndex}
+                {frontmatter.title}
+            </h1>
+            {
+                nextURL ? (
+                    <a href={nextURL} class="w-8 h-8">
+                        <Icon name="ic:outline-chevron-right" />
+                    </a>
+                ) : (
+                    <div />
+                )
+            }
+        </div>
     </div>
     <ByLine
         authors={authors}
@@ -87,6 +120,7 @@ const affiliations: { name: string; url: string }[] = (
             url={part.url}
             index={part?.index}
             chapters={part.chapters}
+            active={thisChapterIndex}
         />
     </section>
     <hr />

@@ -8,9 +8,10 @@ export interface Props {
     index?: number;
     title?: string;
     chapters?: (MarkdownInstance<ChapterFrontmatter> & { index: number })[];
+    active?: number;
 }
 
-const { url, index, title, chapters } = Astro.props as Props;
+const { url, index, title, chapters, active } = Astro.props as Props;
 ---
 
 <section class="py-2">
@@ -27,7 +28,8 @@ const { url, index, title, chapters } = Astro.props as Props;
                 class={clsx(
                     "block py-1 text-md font-bold",
                     !chapter.frontmatter?.published &&
-                        "opacity-20 cursor-default"
+                        "opacity-20 cursor-default",
+                    chapter.index === active && "text-blue-500"
                 )}
             >
                 <div class="inline-block w-6">{chapter.index}</div>

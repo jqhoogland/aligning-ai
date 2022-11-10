@@ -8,7 +8,9 @@ export interface Citation {
 }
 
 export const createBibTex = (citation: Citation) => {
-    const firstAuthor = citation.authors[0].name;
+    citation.lastUpdated = citation.lastUpdated || new Date().toISOString();
+
+    const firstAuthor = citation.authors[0]?.name ?? " Aligned AI";
     const firstAuthorLastName = firstAuthor.split(' ').slice(-1)[0].toLowerCase();
 
     const id = `${firstAuthorLastName}${citation.lastUpdated.slice(0, 4)}`;

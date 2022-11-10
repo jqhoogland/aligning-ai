@@ -33,12 +33,12 @@ Currently, much of the AI safety literature is published on the [Alignment Forum
 
 Our aim is to occupy one level of distillation above the ["sequences"](https://www.alignmentforum.org/library) of the AF. In doing so, we hope to provide a self-contained introduction to the field—enough that an advanced undergrad or graduate student can get up to speed and start contributing to the field.
 
-We also aiming for this textbook to become the basis of courses such as [AGI Safety Fundamentals](https://www.agisafetyfundamentals.com/ai-alignment-curriculum), [Alignment 201](https://www.agisafetyfundamentals.com/alignment-201-curriculum), [Intro to ML Safety](https://course.mlsafety.org/), [AI Safety Camp](https://aisafety.camp/), [ARENA](https://www.arena.education/), and [MLAB](https://forum.effectivealtruism.org/posts/vvocfhQ7bcBR4FLBx/apply-to-the-second-ml-for-alignment-bootcamp-mlab-2-in). Our audience includes a wide range of different people: researchers, students, engineers, and those working in public policy. We don't expect all content to be relevant to all readers, and we suggest that readers skip over content that doesn't concern them.
+We're also aiming for this textbook to become the basis of courses such as [AGI Safety Fundamentals](https://www.agisafetyfundamentals.com/ai-alignment-curriculum), [Alignment 201](https://www.agisafetyfundamentals.com/alignment-201-curriculum), [Intro to ML Safety](https://course.mlsafety.org/), [AI Safety Camp](https://aisafety.camp/), [ARENA](https://www.arena.education/), and [MLAB](https://forum.effectivealtruism.org/posts/vvocfhQ7bcBR4FLBx/apply-to-the-second-ml-for-alignment-bootcamp-mlab-2-in). Our audience includes a wide range of different people: researchers, students, engineers, and those working in public policy. We don't expect all content to be relevant to all readers, and we suggest that readers skip over content that doesn't concern them.
 
 
 ## About the Editors
 
-[Jesse Hoogland](https://jessehoogland.com) is a [SERI MATS scholar](https://www.serimats.org/) under the Deceptive Alignment stream. He has a master's degree in theoretical physics from the University of Amsterdam.
+[Jesse Hoogland](https://jessehoogland.com) is a [SERI MATS scholar](https://www.serimats.org/) under the Deceptive Alignment stream with Evan Hubinger. He has a master's degree in theoretical physics from the University of Amsterdam.
 
 
 [^1]: There are precedents for textbooks written during the revolution. E.g.: Nielsen & Chuang's Quantum Computation and Quantum Information was first published in 2000, only six years after Shor's algorithm and eight years after the Deutsch-Jozsa algorithm. 
