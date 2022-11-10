@@ -14,13 +14,14 @@
   "devDependencies": {
     "@astrojs/tailwind": "^2.1.1",
     "@types/micromodal": "^0.3.3",
-    "astro": "^1.6.1",
+    "astro": "^1.6.6",
     "astro-eleventy-img": "^0.5.0",
     "astro-icon": "^0.8.0",
     "prettier": "2.7.1",
     "prettier-plugin-astro": "^0.7.0",
     "rimraf": "^3.0.2",
-    "tailwindcss-fluid-type": "^2.0.3"
+    "tailwindcss-fluid-type": "^2.0.3",
+    "vite": "^3.2.3"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.8",
