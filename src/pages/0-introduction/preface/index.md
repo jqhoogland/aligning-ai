@@ -4,6 +4,7 @@ description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 authors: 
 - Jesse Hoogland: jessehoogland.com
+published: true
 ---
 
 There is, more often than not, no better way to learn a subject than to read the right book and work through the right exercises. A great textbook can make all the difference.

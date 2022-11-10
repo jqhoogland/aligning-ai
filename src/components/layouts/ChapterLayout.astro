@@ -5,6 +5,8 @@ import { PartFrontmatter } from "./PartLayout.astro";
 export interface ChapterFrontmatter {
     title: string;
     description: string;
+    authors?: Record<string, string>;
+    published?: boolean;
 }
 
 const { frontmatter, url } = Astro.props;
@@ -36,7 +38,7 @@ const thisChapterIndex = part.chapters.find(
 <BaseLayout>
     <script src="https://distill.pub/template.v2.js"></script>
     <main class="max-w-screen-md mx-auto p-2 md:p-8">
-        <nav class="pb-4">
+        <nav class="pb-6">
             <a class="font-bold" href="/">Aligning AI</a> &gt;
             <a href={parentUrl}>{part?.frontmatter?.title}</a>
         </nav>

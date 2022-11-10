@@ -1,0 +1,38 @@
+---
+import { MarkdownInstance } from "astro";
+import { ChapterFrontmatter } from "./layouts/ChapterLayout.astro";
+import clsx from "clsx";
+
+export interface Props {
+    url?: string;
+    index?: number;
+    title?: string;
+    chapters?: (MarkdownInstance<ChapterFrontmatter> & { index: number })[];
+}
+
+const { url, index, title, chapters } = Astro.props as Props;
+---
+
+<section class="py-2">
+    <a href={url}>
+        <h2 class="text-xl font-bold pb-2">
+            {!!index && `Part ${index}.`}
+            {title}
+        </h2>
+    </a>
+    {
+        chapters.map((chapter) => (
+            <a
+                href={chapter.frontmatter?.published && chapter.url}
+                class={clsx(
+                    "block py-1 text-md font-bold",
+                    !chapter.frontmatter?.published &&
+                        "opacity-20 cursor-default"
+                )}
+            >
+                <div class="inline-block w-6">{chapter.index}</div>
+                {chapter.frontmatter.title}
+            </a>
+        ))
+    }
+</section>
