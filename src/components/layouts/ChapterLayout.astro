@@ -36,19 +36,24 @@ const thisChapterIndex = part.chapters.find(
 ---
 
 <BaseLayout>
-    <script src="https://distill.pub/template.v2.js"></script>
-    <main class="max-w-screen-md mx-auto p-2 md:p-8">
-        <nav class="pb-6">
-            <a class="font-bold" href="/">Aligning AI</a> &gt;
-            <a href={parentUrl}>{part?.frontmatter?.title}</a>
-        </nav>
-        <h1 class="text-2xl font-bold">
-            {thisChapterIndex}
-            {frontmatter.title}
-        </h1>
-        <hr class="my-4" />
-        <article class="prose">
-            <slot />
-        </article>
-    </main>
+    <nav class="pb-6">
+        <a class="font-bold" href="/">Aligning AI</a> &gt;
+        <a href={parentUrl}>{part?.frontmatter?.title}</a>
+    </nav>
+    <h1 class="text-2xl font-bold">
+        {thisChapterIndex}
+        {frontmatter.title}
+    </h1>
+    <hr class="my-4" />
+    <article class="prose">
+        <slot />
+    </article>
+    <hr class="my-4" />
+    <footer>
+        <a
+            href={"https://github.com/jqhoogland/aligning-ai/blob/main/src/pages" +
+                url +
+                "/index.md"}>Github</a
+        >
+    </footer>
 </BaseLayout>
