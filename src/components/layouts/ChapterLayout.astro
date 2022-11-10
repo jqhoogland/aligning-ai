@@ -60,12 +60,11 @@ const affiliations: { name: string; url: string }[] = (
     url: Object.values(affiliation)[0],
 }));
 
-const prevURL =
-    thisChapterIndex > 1 ? allChapters[thisChapterIndex - 2].url : "";
-const nextURL =
+const prev = thisChapterIndex > 1 ? allChapters[thisChapterIndex - 2] : null;
+const next =
     thisChapterIndex < allChapters.length
-        ? allChapters[thisChapterIndex].url
-        : "";
+        ? allChapters[thisChapterIndex]
+        : null;
 ---
 
 <BaseLayout>
@@ -79,8 +78,8 @@ const nextURL =
 
         <div class="flex">
             {
-                prevURL ? (
-                    <a href={prevURL} class="w-8 h-8">
+                prev ? (
+                    <a href={prev.url} class="w-8 h-8">
                         <Icon name="ic:outline-chevron-left" />
                     </a>
                 ) : (
@@ -92,8 +91,8 @@ const nextURL =
                 {frontmatter.title}
             </h1>
             {
-                nextURL ? (
-                    <a href={nextURL} class="w-8 h-8">
+                next ? (
+                    <a href={next.url} class="w-8 h-8">
                         <Icon name="ic:outline-chevron-right" />
                     </a>
                 ) : (
@@ -114,14 +113,23 @@ const nextURL =
         </article>
     </div>
     <hr />
-    <section class="container">
-        <Part
-            title={part.frontmatter?.title}
-            url={part.url}
-            index={part?.index}
-            chapters={part.chapters}
-            active={thisChapterIndex}
-        />
+    <section class="container flex flex-wrap justify-between gap-4">
+        {
+            prev && (
+                <div>
+                    <h3 class="font-bold">Previous:</h3>
+                    <a href={prev.url}>{prev.frontmatter?.title}</a>
+                </div>
+            )
+        }
+        {
+            next && (
+                <div>
+                    <h3 class="font-bold">Next:</h3>
+                    <a href={next.url}>{next.frontmatter?.title}</a>
+                </div>
+            )
+        }
     </section>
     <hr />
     <section class="container prose">
