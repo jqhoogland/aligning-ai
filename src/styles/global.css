@@ -3,3 +3,7 @@
 html {
   font-family: "Source Serif Pro", "Apple Garamond", "Baskerville", "Libre Baskerville", "Droid Serif", "Times New Roman", "Times", serif;
 }
+
+.container {
+  @apply max-w-screen-md mx-auto p-2 md:p-8;
+}

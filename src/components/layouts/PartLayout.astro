@@ -30,10 +30,11 @@ const chapters = part.chapters;
 ---
 
 <BaseLayout>
-    <nav class="pb-4">
-        <a class="font-bold" href="/">Aligning AI</a>
-    </nav>
-    <Part title={frontmatter.title} chapters={chapters} />
-
-    <slot />
+    <div class="max-w-screen-md mx-auto p-2 md:p-8">
+        <nav class="pb-4">
+            <a class="font-bold" href="/">Aligning AI</a>
+        </nav>
+        <Part title={frontmatter.title} chapters={chapters} />
+        <slot />
+    </div>
 </BaseLayout>

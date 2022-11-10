@@ -3,8 +3,9 @@ title: Preface
 description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 authors: 
-- Jesse Hoogland: jessehoogland.com
+  - Jesse Hoogland: https://jessehoogland.com
 published: true
+lastUpdated: Nov. 11, 2022
 ---
 
 There is, more often than not, no better way to learn a subject than to read the right book and work through the right exercises. A great textbook can make all the difference.

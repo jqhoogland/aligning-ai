@@ -1,12 +1,16 @@
 ---
+import { getGithubURL } from "~/utils/urls";
+import ByLine from "../ByLine.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { PartFrontmatter } from "./PartLayout.astro";
 
 export interface ChapterFrontmatter {
     title: string;
     description: string;
-    authors?: Record<string, string>;
+    authors?: Record<string, string>[];
+    affiliations?: Record<string, string>[];
     published?: boolean;
+    lastUpdated?: string;
 }
 
 const { frontmatter, url } = Astro.props;
@@ -33,27 +37,46 @@ const part = parts.find((part) => part.url.startsWith(parentUrl));
 const thisChapterIndex = part.chapters.find(
     (chapter) => chapter.url === url
 ).index;
+
+const authors: { name: string; url: string }[] = (
+    frontmatter.authors ?? []
+).map((author) => ({
+    name: Object.keys(author)[0],
+    url: Object.values(author)[0],
+}));
+
+const affiliations: { name: string; url: string }[] = (
+    frontmatter.affiliations ?? []
+).map((affiliation) => ({
+    name: Object.keys(affiliation)[0],
+    url: Object.values(affiliation)[0],
+}));
 ---
 
 <BaseLayout>
-    <nav class="pb-6">
-        <a class="font-bold" href="/">Aligning AI</a> &gt;
-        <a href={parentUrl}>{part?.frontmatter?.title}</a>
-    </nav>
-    <h1 class="text-2xl font-bold">
-        {thisChapterIndex}
-        {frontmatter.title}
-    </h1>
-    <hr class="my-4" />
-    <article class="prose">
-        <slot />
-    </article>
-    <hr class="my-4" />
-    <footer>
-        <a
-            href={"https://github.com/jqhoogland/aligning-ai/blob/main/src/pages" +
-                url +
-                "/index.md"}>Github</a
-        >
-    </footer>
+    <div class="container">
+        <nav class="pb-6">
+            <a class="font-bold" href="/">Aligning AI</a> &gt;
+            <a href={parentUrl}>{part?.frontmatter?.title}</a>
+        </nav>
+        <h1 class="text-2xl font-bold">
+            {thisChapterIndex}
+            {frontmatter.title}
+        </h1>
+    </div>
+    <ByLine
+        authors={authors}
+        affiliations={affiliations}
+        lastUpdated={frontmatter.lastUpdated}
+        url={url}
+    />
+    <div class="container">
+        <article class="prose">
+            <slot />
+        </article>
+        <hr class="my-4" />
+        <footer>
+            <a href={getGithubURL(url)}>Github</a>
+        </footer>
+    </div>
 </BaseLayout>

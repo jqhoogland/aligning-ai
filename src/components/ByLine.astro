@@ -1,0 +1,63 @@
+---
+import { getGithubURL } from "~/utils/urls";
+
+export interface Author {
+    name: string;
+    url: string;
+}
+
+export interface Affiliation {
+    name: string;
+    url: string;
+}
+
+export interface Props {
+    authors?: Author[];
+    affiliations?: Affiliation[];
+    lastUpdated?: string;
+    url?: string;
+}
+
+const { authors, affiliations, lastUpdated, url } = Astro.props as Props;
+---
+
+<hr />
+<div class="grid grid-cols-3 container">
+    {
+        !!authors.length && (
+            <section id="authors">
+                <h3 class="font-bold text-xs">Authors</h3>
+                <ul>
+                    {authors.map(({ name, url }) => (
+                        <li>
+                            <a href={url}>{name}</a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        )
+    }
+    {
+        !!affiliations.length && (
+            <section id="affiliations">
+                <h3 class="font-bold text-xs">Affiliations</h3>
+                <ul>
+                    {affiliations.map(({ name, url }) => (
+                        <li>
+                            <a href={url}>{name}</a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        )
+    }
+    {
+        !!lastUpdated && (
+            <section id="updated">
+                <h3 class="font-bold text-xs">Last Updated</h3>
+                <a href={getGithubURL(url, "commits")}>{lastUpdated}</a>
+            </section>
+        )
+    }
+</div>
+<hr />
