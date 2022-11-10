@@ -1,5 +1,5 @@
 ---
-title: Misalignment
+title: Learning Values
 description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 ---

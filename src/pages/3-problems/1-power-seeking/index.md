@@ -5,3 +5,12 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 ---
 
 # Instrumental Convergence
+
+
+# Tool AIs? Oracle AIs?
+
+
+# Corrigibility
+
+
+# Boxing
