@@ -1,9 +1,9 @@
 ---
-title: Agent Foundations
+title: Psychology
 description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 ---
 
-# Logical Induction
+# Cognitive Biases and Heuristics
 
-# Infra-Bayesianism
+# Operant Conditioning

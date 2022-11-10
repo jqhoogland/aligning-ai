@@ -23,6 +23,7 @@
     "tailwindcss-fluid-type": "^2.0.3"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.8",
     "micromodal": "^0.4.10",
     "tailwindcss": "^3.2.1"
   }
