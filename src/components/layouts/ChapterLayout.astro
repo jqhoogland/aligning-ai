@@ -78,8 +78,8 @@ const next =
 
         <div class="flex">
             {
-                prev ? (
-                    <a href={prev.url} class="w-8 h-8">
+                prev?.frontmatter?.published ? (
+                    <a href={prev.url} class="w-8 h-8 pt-1">
                         <Icon name="ic:outline-chevron-left" />
                     </a>
                 ) : (
@@ -91,8 +91,8 @@ const next =
                 {frontmatter.title}
             </h1>
             {
-                next ? (
-                    <a href={next.url} class="w-8 h-8">
+                next?.frontmatter?.published ? (
+                    <a href={next.url} class="w-8 h-8 pt-1">
                         <Icon name="ic:outline-chevron-right" />
                     </a>
                 ) : (
@@ -115,19 +115,23 @@ const next =
     <hr />
     <section class="container flex flex-wrap justify-between gap-4">
         {
-            prev && (
+            prev?.frontmatter?.published ? (
                 <div>
                     <h3 class="font-bold">Previous:</h3>
                     <a href={prev.url}>{prev.frontmatter?.title}</a>
                 </div>
+            ) : (
+                <div />
             )
         }
         {
-            next && (
+            next?.frontmatter?.published ? (
                 <div>
                     <h3 class="font-bold">Next:</h3>
                     <a href={next.url}>{next.frontmatter?.title}</a>
                 </div>
+            ) : (
+                <div />
             )
         }
     </section>
