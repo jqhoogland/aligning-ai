@@ -69,37 +69,38 @@ const next =
 
 <BaseLayout>
     <div class="container">
-        <nav class="py-2">
-            <a class="font-bold text-sm" href="/">Aligning AI</a> &gt;
-            <a class="font-bold text-sm" href={part.url}
-                >{part.frontmatter?.title}</a
-            >
-        </nav>
+        <nav class="py-2"></nav>
 
-        <div class="flex">
+        <nav class="flex">
             {
                 prev?.frontmatter?.published ? (
-                    <a href={prev.url} class="w-8 h-8 pt-1">
+                    <a href={prev.url} class="w-6 h-6 md:-ml-6">
                         <Icon name="ic:outline-chevron-left" />
                     </a>
                 ) : (
                     <div />
                 )
             }
-            <h1 class="text-3xl font-bold flex-1">
-                {thisChapterIndex}
-                {frontmatter.title}
-            </h1>
+            <div>
+                <a class="font-bold text-sm" href="/">Aligning AI</a> :
+                <a class="font-bold text-sm" href={part.url}
+                    >{part.frontmatter?.title}</a
+                >
+            </div>
             {
                 next?.frontmatter?.published ? (
-                    <a href={next.url} class="w-8 h-8 pt-1">
+                    <a href={next.url} class="w-6 h-6">
                         <Icon name="ic:outline-chevron-right" />
                     </a>
                 ) : (
                     <div />
                 )
             }
-        </div>
+        </nav>
+        <h1 class="text-3xl font-bold flex-1">
+            {thisChapterIndex}
+            {frontmatter.title}
+        </h1>
     </div>
     <ByLine
         authors={authors}
@@ -136,46 +137,50 @@ const next =
         }
     </section>
     <hr />
-    <section class="container prose">
-        {
-            frontmatter.acknowledgments && (
-                <div>
-                    <h3>Acknowledgments</h3>
-                    <p>{frontmatter.acknowledgments}</p>
-                </div>
-            )
-        }
-        <div>
-            <h3>Updates & Corrections</h3>
-            <p>
-                If you see any mistakes or want to suggest improvements, please <a
-                    href={GITHUB_NEW_ISSUE_URL}>create an issue on GitHub</a
-                >
-            </p>
-        </div>
-        <div>
-            <h3>Reuse</h3>
-            <p>
-                Figures and text are available under a Creative Commons license
-                (<a href="https://creativecommons.org/licenses/by/4.0/"
-                    >CC-BY 4.0</a
-                >) unless otherwise mentioned. The source is <a
-                    href={getGithubURL(url)}>available on GitHub</a
-                >. Figures taken from other sources (as mentioned in the
-                captions by "Figure from...") are not available under this
-                license.
-            </p>
-        </div>
-        <div>
-            <h3>Citation</h3>
-            <Code
-                value={createBibTex({
-                    title: frontmatter.title,
-                    authors,
-                    url,
-                    lastUpdated: frontmatter.lastUpdated,
-                })}
-            />
+    <section class="container">
+        <div class="prose prose-sm">
+            {
+                frontmatter.acknowledgments && (
+                    <div>
+                        <h3>Acknowledgments</h3>
+                        <p>{frontmatter.acknowledgments}</p>
+                    </div>
+                )
+            }
+            <div>
+                <h3>Updates & Corrections</h3>
+                <p>
+                    If you see any mistakes or want to suggest improvements,
+                    please <a href={GITHUB_NEW_ISSUE_URL}
+                        >create an issue on GitHub</a
+                    >
+                </p>
+            </div>
+            <div>
+                <h3>Reuse</h3>
+                <p>
+                    Figures and text are available under a Creative Commons
+                    license (<a
+                        href="https://creativecommons.org/licenses/by/4.0/"
+                        >CC-BY 4.0</a
+                    >) unless otherwise mentioned. The source is <a
+                        href={getGithubURL(url)}>available on GitHub</a
+                    >. Figures taken from other sources (as mentioned in the
+                    captions by "Figure from...") are not available under this
+                    license.
+                </p>
+            </div>
+            <div>
+                <h3>Citation</h3>
+                <Code
+                    value={createBibTex({
+                        title: frontmatter.title,
+                        authors,
+                        url,
+                        lastUpdated: frontmatter.lastUpdated,
+                    })}
+                />
+            </div>
         </div>
     </section>
     <hr />
