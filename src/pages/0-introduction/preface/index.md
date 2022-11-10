@@ -8,7 +8,7 @@ published: true
 lastUpdated: 2022-11-10
 ---
 
-There is, more often than not, no better way to learn a subject than to read the right book and work through the right exercises. A great textbook can make all the difference.
+There is often no better way to learn a subject than to read the right book and work through the right exercises. A great textbook can make all the difference.
 
 We believe that AI safety is in need of a great textbook — both to prepare students for research and to welcome researchers from other disciplines. 
 

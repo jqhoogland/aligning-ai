@@ -1,4 +1,3 @@
-import config from '../../astro.config.mjs';
 
 export interface Citation {
     title: string;
@@ -17,10 +16,11 @@ export const createBibTex = (citation: Citation) => {
     const authors = citation.authors.map(author => author.name).join(' and ');
     const year = new Date(citation.lastUpdated).getFullYear();
 
+
     return `@misc{${id},
     title={${citation.title}},
     author={${authors}},
     year={${year}},
-    url={${config.site}${citation.url}}
+    url={${import.meta.env.SITE}${citation.url}}
 }`.trim();
 }
