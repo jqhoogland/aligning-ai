@@ -5,5 +5,6 @@ html {
 }
 
 .container {
-  @apply max-w-screen-md mx-auto p-2 md:p-8;
+  @apply mx-auto p-2 md:p-8; 
+  max-width: calc(65ch + 4rem);
 }

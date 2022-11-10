@@ -1,0 +1,1 @@
+export const GITHUB_NEW_ISSUE_URL = "https://github.com/jqhoogland/aligning-ai/issues/new";

@@ -19,6 +19,8 @@ export interface Props {
 }
 
 const { authors, affiliations, lastUpdated, url } = Astro.props as Props;
+
+const lastUpdatedDate = new Date(lastUpdated).toLocaleDateString();
 ---
 
 <hr />
@@ -55,7 +57,7 @@ const { authors, affiliations, lastUpdated, url } = Astro.props as Props;
         !!lastUpdated && (
             <section id="updated">
                 <h3 class="font-bold text-xs">Last Updated</h3>
-                <a href={getGithubURL(url, "commits")}>{lastUpdated}</a>
+                <a href={getGithubURL(url, "commits")}>{lastUpdatedDate}</a>
             </section>
         )
     }

@@ -3,6 +3,10 @@ import { getGithubURL } from "~/utils/urls";
 import ByLine from "../ByLine.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { PartFrontmatter } from "./PartLayout.astro";
+import { GITHUB_NEW_ISSUE_URL } from "~/data/constants";
+import { createBibTex } from "~/utils/citations";
+import Code from "../Code.astro";
+import Part from "../Part.astro";
 
 export interface ChapterFrontmatter {
     title: string;
@@ -21,8 +25,9 @@ let chapterIndex = 1;
 const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.md");
 const parts = pages
     .filter((page) => page.url.split("/").length === 2)
-    .map((part) => ({
+    .map((part, partIndex) => ({
         ...part,
+        index: partIndex,
         chapters: pages
             .filter(
                 (page) => page.url.startsWith(part.url) && page.url !== part.url
@@ -74,9 +79,61 @@ const affiliations: { name: string; url: string }[] = (
         <article class="prose">
             <slot />
         </article>
-        <hr class="my-4" />
-        <footer>
-            <a href={getGithubURL(url)}>Github</a>
-        </footer>
     </div>
+    <hr />
+    <section class="container">
+        <Part
+            title={part.frontmatter?.title}
+            url={part.url}
+            index={part?.index}
+            chapters={part.chapters}
+        />
+    </section>
+    <hr />
+    <section class="container prose">
+        {
+            frontmatter.acknowledgments && (
+                <div>
+                    <h3>Acknowledgments</h3>
+                    <p>{frontmatter.acknowledgments}</p>
+                </div>
+            )
+        }
+        <div>
+            <h3>Updates & Corrections</h3>
+            <p>
+                If you see any mistakes or want to suggest improvements, please <a
+                    href={GITHUB_NEW_ISSUE_URL}>create an issue on GitHub</a
+                >
+            </p>
+        </div>
+        <div>
+            <h3>Reuse</h3>
+            <p>
+                Figures and text are available under a Creative Commons license
+                (<a href="https://creativecommons.org/licenses/by/4.0/"
+                    >CC-BY 4.0</a
+                >) unless otherwise mentioned. The source is <a
+                    href={getGithubURL(url)}>available on GitHub</a
+                >. Figures taken from other sources (as mentioned in the
+                captions by "Figure from...") are not available under this
+                license.
+            </p>
+        </div>
+        <div>
+            <h3>Citation</h3>
+            <Code
+                value={createBibTex({
+                    title: frontmatter.title,
+                    authors,
+                    url,
+                    lastUpdated: frontmatter.lastUpdated,
+                })}
+            />
+        </div>
+    </section>
+    <hr />
+    <footer class="container">
+        <a href={getGithubURL(url)}>Github</a>
+    </footer>
 </BaseLayout>
