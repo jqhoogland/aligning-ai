@@ -2,7 +2,7 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://astro-moon-landing.netlify.app/",
+  site: "https://agi-curriculum.vercel.app",
   integrations: [tailwind()],
   vite: {
     ssr: {
