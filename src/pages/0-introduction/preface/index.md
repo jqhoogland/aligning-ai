@@ -40,6 +40,8 @@ We're also aiming for this textbook to become the basis of courses such as [AGI 
 
 [Jesse Hoogland](https://jessehoogland.com) is a [SERI MATS scholar](https://www.serimats.org/) under the Deceptive Alignment stream with Evan Hubinger. He has a master's degree in theoretical physics from the University of Amsterdam.
 
+Aaliya Manji has built her career in Education, with the mission of making learning more accessible. She has a degree in Electrical and Electronic Engineering from UCL, with a specific focus on Intelligent Systems.
+
 
 [^1]: There are precedents for textbooks written during the revolution. E.g.: Nielsen & Chuang's Quantum Computation and Quantum Information was first published in 2000, only six years after Shor's algorithm and eight years after the Deutsch-Jozsa algorithm. 
 
