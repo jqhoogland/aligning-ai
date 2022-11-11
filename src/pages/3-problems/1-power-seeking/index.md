@@ -12,5 +12,7 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 
 # Corrigibility
 
+# Myopia
 
 # Boxing
+

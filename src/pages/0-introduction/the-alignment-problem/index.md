@@ -5,7 +5,7 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 authors: 
     - Jesse Hoogland: https://jessehoogland.com
 lastUpdated: 2021-09-01
-published: true
+published: false
 ---
 
 ## Work in Progress
