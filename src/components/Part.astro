@@ -2,16 +2,22 @@
 import { MarkdownInstance } from "astro";
 import { ChapterFrontmatter } from "./layouts/ChapterLayout.astro";
 import clsx from "clsx";
+import { Heading } from "~/utils/toc";
 
 export interface Props {
     url?: string;
     index?: number;
     title?: string;
-    chapters?: (MarkdownInstance<ChapterFrontmatter> & { index: number })[];
+    chapters?: (MarkdownInstance<ChapterFrontmatter> & {
+        index: number;
+        headings: Heading[];
+    })[];
     active?: number;
 }
 
 const { url, index, title, chapters, active } = Astro.props as Props;
+
+// console.log(chapters);
 ---
 
 <section class="py-2">
@@ -23,18 +29,42 @@ const { url, index, title, chapters, active } = Astro.props as Props;
     </a>
     {
         chapters.map((chapter) => (
-            <a
-                href={chapter.frontmatter?.published && chapter.url}
+            <section
                 class={clsx(
-                    "block py-1 text-md font-bold",
                     !chapter.frontmatter?.published &&
-                        "opacity-20 cursor-default",
-                    chapter.index === active && "text-blue-500"
+                        "opacity-20 cursor-default"
                 )}
             >
-                <div class="inline-block w-6">{chapter.index}</div>
-                {chapter.frontmatter.title}
-            </a>
+                <a
+                    href={chapter.frontmatter?.published && chapter.url}
+                    class={clsx(
+                        "block py-1 text-md font-bold",
+                        chapter.index === active && "text-blue-500"
+                    )}
+                >
+                    <div class="inline-block w-6">{chapter.index}</div>
+                    {chapter.frontmatter.title}
+                </a>
+                <ul>
+                    {chapter.headings.map(({ id, value, level }, i) => (
+                        <li>
+                            <a
+                                href={`#${id}`}
+                                class={clsx(
+                                    "block py-1 text-sm",
+                                    chapter.index === active && "text-blue-500"
+                                )}
+                            >
+                                <div class="inline-block w-6" />
+                                <div class="inline-block w-8">
+                                    {chapter.index}.{i + 1}
+                                </div>
+                                {value}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
         ))
     }
 </section>
