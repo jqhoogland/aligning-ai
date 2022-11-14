@@ -1,4 +1,5 @@
 ---
+import { getHeadings } from "~/utils/toc";
 import Part from "../Part.astro";
 import BaseLayout from "./BaseLayout.astro";
 
@@ -22,6 +23,7 @@ const parts = pages
             .map((chapter) => ({
                 ...chapter,
                 index: chapterIndex++,
+                headings: getHeadings(chapter.rawContent()),
             })),
     }));
 
