@@ -8,3 +8,20 @@ html {
   @apply mx-auto p-2 md:px-8 py-4 md:py-8; 
   max-width: calc(65ch + 4rem);
 }
+
+.examples {
+  @apply bg-stone-200 px-8 py-4 rounded-lg w-full;
+}
+
+def {
+  padding-top: 0.25rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: calc((100vw - 520px) / 2);
+  position: absolute;
+  display: flex;
+  left: 0; /* calc(55px + min(100vw - 520px, -110px) / 2); */
+  justify-content: flex-end;
+  font-size: .75rem;
+  opacity: .5;
+}
