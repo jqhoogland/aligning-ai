@@ -14,16 +14,17 @@ html {
 }
 
 def {
+  @apply md:opacity-50 opacity-0;
   padding-top: 0.25rem;
   padding-right: 1rem;
   padding-left: 1rem;
   width: calc((100vw - 520px) / 2);
   position: absolute;
   display: flex;
-  left: 0; /* calc(55px + min(100vw - 520px, -110px) / 2); */
+  left: -1em;
   justify-content: flex-end;
   font-size: .75rem;
-  opacity: .5;
+  text-align: right;
 }
 
 

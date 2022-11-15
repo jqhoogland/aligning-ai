@@ -8,14 +8,14 @@ published: true
 # Structure
 
 
-:def[Abstract algebra]
-We'll get to linear algebra in a minute. First, it's worthwhile to emphasize what *algebra* actually is. Here, we're talking about **abstract algebra** or **modern algebra**, :def[Elementary algebra]the study of algebraic structures. This is in contrast to the **elementary algebra** you learned in primary school, which concerns the manipulation of variables.
+:def[abstract algebra]
+We'll get to linear algebra in a minute. First, it's worthwhile to emphasize what *algebra* actually is. Here, we're talking about **abstract algebra** or **modern algebra**, :def[elementary algebra]the study of algebraic structures. This is in contrast to the **elementary algebra** you learned in primary school, which concerns the manipulation of variables.
 
-:def[Algebraic Structure]
+:def[algebraic structure]
 
 An **algebraic structure** consists of three things: a collection of sets, a collection of operations over elements of those sets, and a collection of axioms that those operations satisfy. Though mathematicians have developed whole zoos of exotic algebraic structures, we're interested in a simpler set of structures that often concern only a single set of elements and binary operations.
 
-:def[Group]
+:def[group]
 
 For example, **a group**, is a set, $G$, equipped with a binary operation $\cdot$ that satisfies the following four properties:
 - **Closure**: $\id{closure}{\forall a,\ b \in G: a \cdot b \in G}$.
@@ -23,8 +23,8 @@ For example, **a group**, is a set, $G$, equipped with a binary operation $\cdot
 - **Associativity**: $\id{associativity}{\forall a,\ b,\ c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c}$.
 - **Invertibility**: $\id{invertibililty}{\forall a\in G,\ \exists a^{-1} \in G:\ a\cdot a^{-1} =  a^{-1} \cdot a = e}$.
 
-:def[Abelian Group]
-An **Abelian group** is a group whose elements are also **commutative**:
+:def[abelian group]
+An **abelian group** is a group whose elements are also **commutative**:
 
 $$
 \t{5.1}{\forall a,\ b \in A: a \cdot b = b \cdot a.} 
@@ -49,7 +49,7 @@ If we conside all symmetries of a square (rotations and reflections), $S(\square
 
 ::::
 
-:def[Ring, Lattice]
+:def[ring, lattice]
 
 Moving up, **rings** and **lattices** are sets equipped with two binary operations that are commutative and associative. The difference between these two is how the two operations distribute.
 
@@ -65,13 +65,13 @@ $$
 \t{5.3}{\forall a,\ b \in L: a \wedge (a \vee b) = a \vee (a \wedge b) = a.}
 $$
 
-:def[Field]
+:def[field]
 
 Finally, **fields** are rings with an additional property: every element has an inverse. That is, $\forall a \in F,\ \exists a^{-1} \in F:\ a \cdot a^{-1} = a^{-1} \cdot a = 1$. They're the structure you're most familiar with, as they're the basis of arithmetic. The rational numbers, $\QQ$, are a field, as are the real numbers, $\RR$, and the complex numbers, $\CC$.
 
 # Vector Spaces
 
-:def[Vector Space]
+:def[vector space]
 For this chapter, we're mainly interested in a particular kind of algebraic structure called a **vector space**. Vector spaces are defined over two existing structures:
 
 1. An Abelian group over a set, $V$, of "vectors", whose operation is called **vector addition** ($+_V: V \times V \rightarrow V$) and whose identity element is the zero vector, usually denoted $\mathbf{0}$.
