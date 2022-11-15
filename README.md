@@ -82,13 +82,20 @@ This is an example of how to list things you need to use the software and how to
 
 ## Latex
 
-We've provided a number of useful latex macros.
+In addition to the default [Katex symbols](https://katex.org/docs/support_table.html), we've provided a number of useful latex macros:
 
 E.g.
--  `\NN`, `\QQ`, `\RR`, `\CC` for $\mathbb{N}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$.
+- `\B{x}` for `\boldsymbol{x}` and `\b{x}` for `\mathbf{x}`
+-  `\N`, `\QQ`, `\RR`, `\CC` for $\mathbb{N}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$.
+- `\t{3.1}{f(x) = x^2-1}` is equivalent to `\htmlId{eq:3.1}{f(x) = x^2-1 \tag{3.1}}`
 
 
-Wrap equations in `$\htmlId{eq:my-eq-name}{f(x) = x^2+1}$`
+## Misc
+
+- Wrap equations in `$\htmlId{eq:my-eq-name}{f(x) = x^2-1}$`
+- When you select an equation and copy it, you'll copy the latex source.
+- Equation numbering is manual with `\tag{3.1}`. 
+
 
 <!-- LICENSE -->
 ## License

@@ -18,16 +18,16 @@ An **algebraic structure** consists of three things: a collection of sets, a col
 :def[Group]
 
 For example, **a group**, is a set, $G$, equipped with a binary operation $\cdot$ that satisfies the following four properties:
-- **Closure**: $\htmlId{eq:closure}{\forall a,\ b \in G: a \cdot b \in G}$.
-- **Identity**: $\htmlId{eq:identity}{\exists e \in G:\forall a \in G,\ a \cdot e = e \cdot a = a}$.
-- **Associativity**: $\htmlId{eq:associativity}{\forall a,\ b,\ c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c}$.
-- **Invertibility**: $\htmlId{eq:invertibility}{\forall a\in G,\ \exists a^{-1} \in G:\ a\cdot a^{-1} =  a^{-1} \cdot a = e}$.
+- **Closure**: $\id{closure}{\forall a,\ b \in G: a \cdot b \in G}$.
+- **Identity**: $\id{identity}{\exists e \in G:\forall a \in G,\ a \cdot e = e \cdot a = a}$.
+- **Associativity**: $\id{associativity}{\forall a,\ b,\ c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c}$.
+- **Invertibility**: $\id{invertibililty}{\forall a\in G,\ \exists a^{-1} \in G:\ a\cdot a^{-1} =  a^{-1} \cdot a = e}$.
 
 :def[Abelian Group]
 An **Abelian group** is a group whose elements are also **commutative**:
 
 $$
-\forall a,\ b \in A: a \cdot b = b \cdot a. 
+\t{5.1}{\forall a,\ b \in A: a \cdot b = b \cdot a.} 
 $$
 
 ::::div{.examples}
@@ -56,13 +56,13 @@ Moving up, **rings** and **lattices** are sets equipped with two binary operatio
 For **rings**, the operations ("addition" and "multiplication") are distributive:
 
 $$
-\forall a,\ b,\ c \in R: a \cdot (b + c) = a \cdot b + a \cdot b
+\t{5.2}{\forall a,\ b,\ c \in R: a \cdot (b + c) = a \cdot b + a \cdot b.}
 $$
 
 For **lattices**, the operations ("join" and "meet") are absorptive:
 
 $$
-\forall a,\ b \in L: a \wedge (a \vee b) = a \vee (a \wedge b) = a
+\t{5.3}{\forall a,\ b \in L: a \wedge (a \vee b) = a \vee (a \wedge b) = a.}
 $$
 
 :def[Field]
@@ -81,31 +81,31 @@ For this chapter, we're mainly interested in a particular kind of algebraic stru
 A vector space combines these structures through an operation called **scalar multiplication** ($\cdot_S: V \times F \rightarrow V$) that distributes over vector and field addition. That is, for all $\mathbf v,\ \mathbf w \in V$ and for all $a,\ b \in F:$
 
 $$
-a \cdot_S (\mathbf v +_V \mathbf w) = a \cdot_S \mathbf v +_V a \cdot_S \mathbf w,
+\t{5.4}{a \cdot_S (\mathbf v +_V \mathbf w) = a \cdot_S \mathbf v +_V a \cdot_S \mathbf w,}
 $$
 
 and
 
 $$ 
-(a +_F b) \cdot_S \mathbf v = a \cdot_S \mathbf v +_V b \cdot_S \mathbf v.
+\t{5.5}{(a +_F b) \cdot_S \mathbf v = a \cdot_S \mathbf v +_V b \cdot_S \mathbf v.}
 $$
 
 Moreover, scalar multiplication is "compatible" with field multiplication,
 
 $$
-\forall \mathbf v \in V,\ \forall a,\ b \in F: (a \cdot_F b) \cdot_S \mathbf v = a \cdot_S (b \cdot_S \mathbf v),
+\t{5.6}{\forall \mathbf v \in V,\ \forall a,\ b \in F: (a \cdot_F b) \cdot_S \mathbf v = a \cdot_S (b \cdot_S \mathbf v),}
 $$
 
 and there identity of the field addition operation is the identity of the scalar multiplication operation,
 
 $$
-\forall \mathbf v \in V: 1 \cdot_S \mathbf v = \mathbf v.
+\t{5.7}{\forall \mathbf v \in V: 1 \cdot_S \mathbf v = \mathbf v.}
 $$
 
 To simplify the notation (at the expense of more ambiguity), we almost always drop the subscripts, and we omit the scalar multiplication operation when it's clear from context. So, we can write:
 
 $$
-(a + b) (\mathbf v + \mathbf w) = a \mathbf v + a \mathbf w + b \mathbf v + b \mathbf w,
+\t{5.8}{(a + b) (\mathbf v + \mathbf w) = a \mathbf v + a \mathbf w + b \mathbf v + b \mathbf w,}
 $$
 
 Be careful to not confuse vector addition, $+_V$, with field addition, $+_F$ or scalar multiplication, $\cdot_S$, with field multiplication, $\cdot_F$. 

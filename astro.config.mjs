@@ -32,6 +32,11 @@ export default defineConfig({
           "\\QQ": "\\mathbb{Q}",
           "\\NN": "\\mathbb{N}",
           "\\FF": "\\mathbb{F}",
+          "\\FF": "\\mathbb{F}",
+          "\\B": "\\boldsymbol{#1}",
+          "\\b": "\\mathbf{#1}",
+          "\\id": "\\htmlId{eq:#1}{#2}",
+          "\\t": "\\htmlId{eq:#1}{#2} \\tag{#1}",
         },
         trust: true,
       }]
