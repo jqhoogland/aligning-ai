@@ -24,6 +24,7 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
+    "@astrojs/mdx": "^0.11.6",
     "@tailwindcss/typography": "^0.5.8",
     "clsx": "^1.2.1",
     "micromodal": "^0.4.10",

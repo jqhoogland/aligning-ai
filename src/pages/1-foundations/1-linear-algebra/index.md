@@ -9,15 +9,15 @@ published: true
 
 
 :def[abstract algebra]
-We'll get to linear algebra in a minute. First, it's worthwhile to emphasize what *algebra* actually is. Here, we're talking about **abstract algebra** or **modern algebra**, :def[elementary algebra]the study of algebraic structures. This is in contrast to the **elementary algebra** you learned in primary school, which concerns the manipulation of variables.
+We'll get to linear algebra in a minute. First, it's worthwhile to emphasize what *algebra* actually is. Here, we're not talking about the *elementary algebra* you learned in school, which is about manipulating variables (read: arithmetic with letters). We're talking about the **abstract algebra** of modern mathematics, which is about studying *algebraic structures*.
 
 :def[algebraic structure]
 
-An **algebraic structure** consists of three things: a collection of sets, a collection of operations over elements of those sets, and a collection of axioms that those operations satisfy. Though mathematicians have developed whole zoos of exotic algebraic structures, we're interested in a simpler set of structures that often concern only a single set of elements and binary operations.
+An **algebraic structure** consists of three things: sets of elements, operations over those sets, and the axioms those operations satisfy. Though mathematicians have developed whole zoos of exotic algebraic structures, we're interested in simpler structures that often involve only a single set of elements and only binary operations.
 
 :def[group]
 
-For example, **a group**, is a set, $G$, equipped with a binary operation $\cdot$ that satisfies the following four properties:
+For example, **a group**, is a set, $G$, equipped with a binary operation, $(\cdot):~G \times G \to G$, that satisfies the following four properties:
 - **Closure**: $\id{closure}{\forall a,\ b \in G: a \cdot b \in G}$.
 - **Identity**: $\id{identity}{\exists e \in G:\forall a \in G,\ a \cdot e = e \cdot a = a}$.
 - **Associativity**: $\id{associativity}{\forall a,\ b,\ c \in G: a \cdot (b \cdot c) = (a \cdot b) \cdot c}$.
@@ -74,38 +74,38 @@ Finally, **fields** are rings with an additional property: every element has an 
 :def[vector space]
 For this chapter, we're mainly interested in a particular kind of algebraic structure called a **vector space**. Vector spaces are defined over two existing structures:
 
-1. An Abelian group over a set, $V$, of "vectors", whose operation is called **vector addition** ($+_V: V \times V \rightarrow V$) and whose identity element is the zero vector, usually denoted $\mathbf{0}$.
+1. An Abelian group over a set, $V$, of "vectors", whose operation is called **vector addition** ($+_V: V \times V \rightarrow V$) and whose identity element is the zero vector, usually denoted $\b{0}$.
 
 2. A field over a set, $F$, of "scalars" with all the usual arithmetic operations ($\cdot_F$, $+_F$, $-_F$, $1$, $0$). Usually, this field is the real numbers, $\mathbb{R}$, but it could be any field.
 
-A vector space combines these structures through an operation called **scalar multiplication** ($\cdot_S: V \times F \rightarrow V$) that distributes over vector and field addition. That is, for all $\mathbf v,\ \mathbf w \in V$ and for all $a,\ b \in F:$
+A vector space combines these structures through an operation called **scalar multiplication** ($\cdot_S: V \times F \rightarrow V$) that distributes over vector and field addition. That is, for all $\b v,\ \b w \in V$ and for all $a,\ b \in F:$
 
 $$
-\t{5.4}{a \cdot_S (\mathbf v +_V \mathbf w) = a \cdot_S \mathbf v +_V a \cdot_S \mathbf w,}
+\t{5.4}{a \cdot_S (\b v +_V \b w) = a \cdot_S \b v +_V a \cdot_S \b w,}
 $$
 
 and
 
 $$ 
-\t{5.5}{(a +_F b) \cdot_S \mathbf v = a \cdot_S \mathbf v +_V b \cdot_S \mathbf v.}
+\t{5.5}{(a +_F b) \cdot_S \b v = a \cdot_S \b v +_V b \cdot_S \b v.}
 $$
 
 Moreover, scalar multiplication is "compatible" with field multiplication,
 
 $$
-\t{5.6}{\forall \mathbf v \in V,\ \forall a,\ b \in F: (a \cdot_F b) \cdot_S \mathbf v = a \cdot_S (b \cdot_S \mathbf v),}
+\t{5.6}{\forall \b v \in V,\ \forall a,\ b \in F: (a \cdot_F b) \cdot_S \b v = a \cdot_S (b \cdot_S \b v),}
 $$
 
 and there identity of the field addition operation is the identity of the scalar multiplication operation,
 
 $$
-\t{5.7}{\forall \mathbf v \in V: 1 \cdot_S \mathbf v = \mathbf v.}
+\t{5.7}{\forall \b v \in V: 1 \cdot_S \b v = \b v.}
 $$
 
 To simplify the notation (at the expense of more ambiguity), we almost always drop the subscripts, and we omit the scalar multiplication operation when it's clear from context. So, we can write:
 
 $$
-\t{5.8}{(a + b) (\mathbf v + \mathbf w) = a \mathbf v + a \mathbf w + b \mathbf v + b \mathbf w,}
+\t{5.8}{(a + b) (\b v + \b w) = a \b v + a \b w + b \b v + b \b w,}
 $$
 
 Be careful to not confuse vector addition, $+_V$, with field addition, $+_F$ or scalar multiplication, $\cdot_S$, with field multiplication, $\cdot_F$. 
@@ -127,16 +127,16 @@ Altogether, this involves ten axioms:
 
 | Axiom | Operation | Meaning | 
 | --- | --- | --- |
-| Closure 1 | Vector addition | $\mathbf v + \mathbf w \in \mathbb{R}^3$ |
-| Associativity | Vector addition | $(\mathbf v + \mathbf w) + \mathbf x = \mathbf v + (\mathbf w + \mathbf x)$ |
-| Commutativity | Vector addition | $\mathbf v + \mathbf w = \mathbf w + \mathbf v$ |
-| Identity 1 | Vector addition | $\mathbf v + \mathbf 0 = \mathbf v$ |
-| Inverse | Vector addition | $\mathbf v + \mathbf v^{-1} = \mathbf 0$ |
-| Closure 2 | Scalar multiplication | $a\mathbf v \in \mathbb{R}^3$ |
-| Distributivity 1 | Scalar multiplication | $a (\mathbf v + \mathbf w) = a \mathbf v + a \mathbf w$ |
-| Distributivity 2 | Scalar multiplication | $(a + b) \mathbf v = a \mathbf v + b \mathbf v$ |
-| Compatibility | Scalar multiplication | $(a \cdot b) \mathbf v = a (b \mathbf v)$ |
-| Identity 2| Scalar multiplication | $1 \mathbf v = \mathbf v$ |
+| Closure 1 | Vector addition | $\b v + \b w \in \mathbb{R}^3$ |
+| Associativity | Vector addition | $(\b v + \b w) + \b x = \b v + (\b w + \b x)$ |
+| Commutativity | Vector addition | $\b v + \b w = \b w + \b v$ |
+| Identity 1 | Vector addition | $\b v + \b 0 = \b v$ |
+| Inverse | Vector addition | $\b v + \b v^{-1} = \b 0$ |
+| Closure 2 | Scalar multiplication | $a\b v \in \mathbb{R}^3$ |
+| Distributivity 1 | Scalar multiplication | $a (\b v + \b w) = a \b v + a \b w$ |
+| Distributivity 2 | Scalar multiplication | $(a + b) \b v = a \b v + b \b v$ |
+| Compatibility | Scalar multiplication | $(a \cdot b) \b v = a (b \b v)$ |
+| Identity 2| Scalar multiplication | $1 \b v = \b v$ |
 
 
 
