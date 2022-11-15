@@ -10,7 +10,7 @@ html {
 }
 
 .examples {
-  @apply bg-stone-200 px-8 py-4 rounded-lg w-full;
+  @apply bg-stone-200 px-8 pb-4 pt-0.5 rounded-lg w-full;
 }
 
 def {

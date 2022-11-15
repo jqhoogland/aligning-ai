@@ -78,7 +78,17 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
+# Reference
 
+## Latex
+
+We've provided a number of useful latex macros.
+
+E.g.
+-  `\NN`, `\QQ`, `\RR`, `\CC` for $\mathbb{N}$, $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$.
+
+
+Wrap equations in `$\htmlId{eq:my-eq-name}{f(x) = x^2+1}$`
 
 <!-- LICENSE -->
 ## License

@@ -23,6 +23,18 @@ export default defineConfig({
       remarkDirective,
       remarkDirectiveRehype
     ],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [
+      [rehypeKatex, {
+        macros: {
+          "\\RR": "\\mathbb{R}",
+          "\\ZZ": "\\mathbb{Z}",
+          "\\CC": "\\mathbb{C}",
+          "\\QQ": "\\mathbb{Q}",
+          "\\NN": "\\mathbb{N}",
+          "\\FF": "\\mathbb{F}",
+        },
+        trust: true,
+      }]
+    ],
   }
 });

@@ -3,18 +3,25 @@ title: Learning Values
 description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 ---
-
 # Orthogonality Thesis
 
+# Outer alignment
 
-# Fragility of Human Values
-
-
-# Goodhart's Law Specification Gaming
+## Fragility of Human Values
 
 
-# Reward Hacking
+## Goodhart's Law Specification Gaming
 
-# Distributional Shift & Goal Misgeneralization
+
+## Reward Hacking
+
+# Robustness & Inner alignment
+
+
+## Distributional Shift & Goal Misgeneralization
+
+## Deceptive Alignment
+
+
 
 
