@@ -84,4 +84,32 @@ const description = "Let's solve alignment.";
     <body class="h-full overflow-x-hidden">
         <slot />
     </body>
+    <footer>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script>
+            import tippy from "tippy.js";
+
+            // Footnotes
+            const footnotes = document.querySelectorAll(
+                'a[aria-describedby="footnote-label"]'
+            );
+            footnotes.forEach((footnote) => {
+                const footnoteId = footnote
+                    .getAttribute("href")
+                    .replace("#", "");
+
+                const footnoteText =
+                    document.getElementById(footnoteId).innerText;
+
+                const footnoteContent = `<div class="hover-card">${footnoteText}</div>`;
+
+                tippy(`#${footnote.id}`, {
+                    content: footnoteContent,
+                    theme: "light",
+                    allowHTML: true,
+                });
+            });
+        </script>
+    </footer>
 </html>

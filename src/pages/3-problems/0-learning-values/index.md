@@ -15,7 +15,7 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 
 ## Reward Hacking
 
-# Robustness & Inner alignment
+# Inner alignment & Robustness
 
 
 ## Distributional Shift & Goal Misgeneralization

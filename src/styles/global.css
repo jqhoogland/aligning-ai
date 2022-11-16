@@ -32,3 +32,7 @@ def {
   font-size: 0.75rem;
   opacity: 75%;
 }
+
+.hover-card {
+  @apply bg-gray-100 p-2 rounded-md text-sm shadow-md border-2 border-gray-200;
+}
