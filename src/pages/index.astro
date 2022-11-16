@@ -8,7 +8,7 @@ import { getHeadings } from "~/utils/toc";
 
 const pages = await Astro.glob<PartFrontmatter>("./**/index.md");
 
-let chapterIndex = 1;
+let chapterIndex = 0;
 
 const parts = pages
   .filter((page) => page.url.split("/").length === 2)

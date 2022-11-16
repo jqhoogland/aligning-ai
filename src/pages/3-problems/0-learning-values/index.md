@@ -7,7 +7,7 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 
 # Outer alignment
 
-## Fragility of Human Values
+## Complexity of Values
 
 
 ## Goodhart's Law Specification Gaming
@@ -23,5 +23,4 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 ## Deceptive Alignment
 
 
-
-
+# Path-dependence

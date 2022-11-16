@@ -28,3 +28,7 @@ def {
 }
 
 
+.prose figure {
+  font-size: 0.75rem;
+  opacity: 75%;
+}

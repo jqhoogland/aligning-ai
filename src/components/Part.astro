@@ -17,7 +17,6 @@ export interface Props {
 
 const { url, index, title, chapters, active } = Astro.props as Props;
 
-// console.log(chapters);
 ---
 
 <section class="py-2">
@@ -49,7 +48,10 @@ const { url, index, title, chapters, active } = Astro.props as Props;
                     {chapter.headings.map(({ id, value, level }, i) => (
                         <li>
                             <a
-                                href={`#${id}`}
+                                href={
+                                    chapter.frontmatter?.published &&
+                                    `${chapter.url}#${id}`
+                                }
                                 class={clsx(
                                     "block py-1 text-sm",
                                     chapter.index === active && "text-blue-500"

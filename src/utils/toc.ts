@@ -10,8 +10,15 @@ export const getHeadings = (doc: string) => {
         const [level, ...value] = line.split(" ");
         if (level !== "#".repeat(level.length)) return false;
 
+        const id = value.join("-").toLowerCase().replace(/ /g, "-").replace(/[\.]/, "");
+
+        // Check if value[0] is of shape `1.2.3`
+        if (value[0].split(".").every(n => !isNaN(Number(n)))) {
+            value.shift();
+        }          
+
         return {
-            id: value.join("-").toLowerCase().replace(/ /g, "-"), // TODO: check
+            id,
             value: value.join(" "),
             level: level.length
         }

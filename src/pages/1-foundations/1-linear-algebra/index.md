@@ -3,9 +3,12 @@ title: Linear Algebra
 description: ""
 layout: "../../../components/layouts/ChapterLayout.astro"
 published: true
+authors: 
+  - Jesse Hoogland: https://jessehoogland.com
+lastUpdated: 2022-11-15
 ---
 
-# Structure
+# 5.1 Algebraic Structures
 
 
 :def[abstract algebra]
@@ -32,9 +35,11 @@ $$
 
 ::::div{.examples}
 ### Example 5.1 (Symmetries of the Square)
-Consider the group of rotations of a square, $R(\square)$. We have four elements: the identity, a rotation by $\pi/2$, a rotation by $\pi$, and a rotation by $3\pi/2$. The identity is the identity element, and the rotations are inverses of each other. The group is closed under composition, and the composition is associative. The group is Abelian, because the rotations commute with each other.
+Consider the group of rotations of a square, $R_4$. We have four elements: the identity, a rotation by $\pi/2$, a rotation by $\pi$, and a rotation by $3\pi/2$. The identity is the identity element, and the rotations are inverses of each other. The group is closed under composition, and the composition is associative. The group is Abelian, because the rotations commute with each other.
 
-If we conside all symmetries of a square (rotations and reflections), $S(\square)$, we introduce two new elements: a reflection across the $x$-axis and a reflection across the $y$-axis. The group is still closed under composition, and the composition is still associative. However, the group is no longer Abelian because of the reflections.
+If we conside all symmetries of a square (rotations *and* reflections), $D_4$,[^1] we introduce four new elements: two reflections across the vertical/horizontal axes and two reflections across the diagonal axes. The group is still closed under composition, and the composition is still associative. However, the group is no longer abelian because of the reflections.
+
+[^1]: This is called the dihedral group of degree four.
 
 :::details{.exercise}
 :summary[**Exercise 5.1** Prove that $R(\square)$ is an Abelian group.]{#ex:5_1}
@@ -141,3 +146,8 @@ Altogether, this involves ten axioms:
 
 
 :::
+
+
+# Further Reading
+
+For more on algebraic structures, check out [Julie Morunuki's cheatsheet](https://argumatronic.com/posts/2019-06-21-algebra-cheatsheet.html).
