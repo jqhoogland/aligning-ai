@@ -8,4 +8,4 @@ layout: "../../../components/layouts/ChapterLayout.astro"
 
 # Autoencoders
 
-https://lilianweng.github.io/posts/2018-08-12-vae/#autoencoder
+https://lilianweng.github.io/posts/2018-08-12-vae/#autoencoder  

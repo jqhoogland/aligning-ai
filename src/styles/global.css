@@ -36,3 +36,18 @@ def {
 .hover-card {
   @apply bg-gray-100 p-2 rounded-md text-sm shadow-md border-2 border-gray-200;
 }
+
+
+.wide {
+  @apply md:-mx-32;
+  /* margin-left: -8rem;
+  margin-right: -8rem; */
+}
+
+.cols-2 {
+  @apply prose-sm flex flex-wrap wide;
+}
+
+.cols-2 div {
+  @apply w-full md:w-1/2;
+}
