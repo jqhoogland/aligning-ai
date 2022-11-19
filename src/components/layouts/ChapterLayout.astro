@@ -4,7 +4,7 @@ import ByLine from "../ByLine.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { PartFrontmatter } from "./PartLayout.astro";
 import { GITHUB_NEW_ISSUE_URL } from "~/data/constants";
-import { createBibTex } from "~/utils/citations";
+import { createBibTex, getCitations } from "~/utils/citations";
 import Code from "../Code.astro";
 import Part from "../Part.astro";
 import Icon from "astro-icon";
@@ -42,9 +42,10 @@ const parts = pages
 const allChapters = parts.flatMap((part) => part.chapters);
 
 const part = parts.find((part) => part.url.startsWith(parentUrl));
-const thisChapterIndex = part.chapters.find(
-    (chapter) => chapter.url === url
-).index;
+
+const thisChapter = part.chapters.find((chapter) => chapter.url === url);
+
+const thisChapterIndex = thisChapter.index;
 
 const authors: { name: string; url: string }[] = (
     frontmatter.authors ?? []
@@ -65,6 +66,9 @@ const next =
     thisChapterIndex < allChapters.length
         ? allChapters[thisChapterIndex]
         : null;
+
+const references = getCitations(thisChapter.rawContent());
+console.log({ references });
 ---
 
 <BaseLayout>
@@ -145,6 +149,13 @@ const next =
                     </div>
                 )
             }
+
+            <div>
+                <h3>References</h3>
+                <ul>
+                    {references.map((reference) => <li set:html={reference} />)}
+                </ul>
+            </div>
             <div>
                 <h3>Updates & Corrections</h3>
                 <p>

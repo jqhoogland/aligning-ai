@@ -65,7 +65,7 @@ It turns out that the NAND gate is **universal**, meaning that it can be used to
 
 ::::details{.exercise}
 
-:summary[**Exercise 1.1** Use the NAND gate to derive all the logical connectives in Figure 1.1. Once you've derived a connective, you can use it in subsequent derivations.]{}
+:summary[**Exercise 1.1** Use the NAND gate to derive all the logical connectives in Figure 1.1. Once you've derived a connective, you can use it in subsequent]{}
 
 ::::
 
