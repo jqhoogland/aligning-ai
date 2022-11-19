@@ -26,7 +26,7 @@ published: true
 :def[artificial intelligence]
 The aim of the field of **artificial intelligence** is to make machines that can acquire, understand, and use knowledge as humans can. It's not about faking intelligence or about achieving intelligence in a few narrow domains like board games and image recognition. Nor is it about building tools to assist (but not replace) humans. It's about building machines that can do *anything* humans can do, and, when possible, do it *better*.
 
-That puts us in a precarious position. As professor [Stuart Russell](russell) writes [@russell2022]:
+That puts us in a precarious position. As professor [Stuart Russell](russell) writes&nbsp;[@russell2022]:
 
 > The incentives for further development of AI [...] are huge, and the momentum appears unstoppable. We must, therefore, ask, "What if we succeed?" This question is seldom considered in the AI literature, which is focused primarily on the pursuit of success rather than on its consequences.
 
