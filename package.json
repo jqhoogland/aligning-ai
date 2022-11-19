@@ -35,7 +35,7 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "remark-parse": "^10.0.1",
-    "remark-preset-obsidian": "^0.0.5",
+    "remark-preset-obsidian": "^0.0.7",
     "tailwindcss": "^3.2.1",
     "tippy.js": "^6.3.7",
     "unified": "^10.1.2"

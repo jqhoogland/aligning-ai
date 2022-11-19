@@ -100,7 +100,7 @@ const description = "Let's solve alignment.";
                     .replace("#", "");
 
                 const footnoteText =
-                    document.getElementById(footnoteId).innerText;
+                    document.getElementById(footnoteId).innerHTML;
 
                 const footnoteContent = `<div class="hover-card">${footnoteText}</div>`;
 
@@ -108,6 +108,25 @@ const description = "Let's solve alignment.";
                     content: footnoteContent,
                     theme: "light",
                     allowHTML: true,
+                    interactive: true,
+                    appendTo: () => document.body,
+                });
+            });
+
+            const references = document.querySelectorAll("a.csl-cite");
+
+            references.forEach((reference) => {
+                const refId = reference.getAttribute("href").replace("#", "");
+                const bibItem = document.getElementById(refId).innerHTML;
+                const referenceContent = `<div class="hover-card">${bibItem}</div>`;
+                const backRefId = reference.children[0].id;
+
+                tippy(`#${backRefId}`, {
+                    content: referenceContent,
+                    theme: "light",
+                    allowHTML: true,
+                    interactive: true,
+                    appendTo: () => document.body,
                 });
             });
         </script>

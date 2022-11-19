@@ -34,7 +34,7 @@ def {
 }
 
 .hover-card {
-  @apply bg-gray-100 p-2 rounded-md text-sm shadow-md border-2 border-gray-200;
+  @apply bg-gray-100 p-2 rounded-md text-sm shadow-md border-2 border-gray-200 prose prose-sm;
 }
 
 

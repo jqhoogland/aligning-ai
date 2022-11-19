@@ -51,5 +51,5 @@ export const getCitations = (text: string): string[] => {
       .parse(text)
   );
 
-  return getReferences(citations, bibliography);
+  return getReferences(citations, bibliography).map(ref => ref.replace("↩️", "↩"));
 }
