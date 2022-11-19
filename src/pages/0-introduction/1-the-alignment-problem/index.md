@@ -24,19 +24,21 @@ published: true
 ::::
 
 :def[artificial intelligence]
-The aim of the field of **artificial intelligence** is to make machines that can acquire, understand, and use knowledge as humans can. It's not about faking intelligence or about achieving intelligence in a few narrow domains like board games and image recognition. Nor is it about building tools to assist (but not replace) humans. It's about building machines that can do anything humans can do, and, when possible, do it better.
+The aim of the field of **artificial intelligence** is to make machines that can acquire, understand, and use knowledge as humans can. It's not about faking intelligence or about achieving intelligence in a few narrow domains like board games and image recognition. Nor is it about building tools to assist (but not replace) humans. It's about building machines that can do *anything* humans can do, and, when possible, do it *better*.
 
 That puts us in a precarious position. As professor [Stuart Russell](russell) writes [@russell2022]:
 
 > The incentives for further development of AI [...] are huge, and the momentum appears unstoppable. We must, therefore, ask, "What if we succeed?" This question is seldom considered in the AI literature, which is focused primarily on the pursuit of success rather than on its consequences.
 
-In the face of future adversaries, potentially much more intelligent than we are and with very different goals than we have, those consequences could prove catastrophic. For a start, we could permanently lose control over our future.
+In the face of future adversaries, potentially much more intelligent than we are and with very different goals than we have, those consequences could prove [catastrophic](#understanding-the-risks).
 
 :def[the alignment problem]
 This is a book about the consequences. It's about the risks of building machines that are more powerful than we are and about our — still very limited — understanding of how to reduce those risks. It's about **the alignment problem**: how do we make sure that the machines we build and deploy pursue our goals and not their own? 
 
 We don't yet know the answer to that question. Given the stakes and the [urgency](2-timelines-and-takeoffs), we can't afford to wait in writing this book until we do know the answer. 
 
+
+# Understanding the Risks
 
 [russell]: https://people.eecs.berkeley.edu/~russell/
 
