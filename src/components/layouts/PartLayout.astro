@@ -9,7 +9,7 @@ export interface PartFrontmatter {
 
 const { frontmatter, url } = Astro.props;
 
-const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.md");
+const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.mdx");
 let chapterIndex = 1;
 const parts = pages
     .filter((page) => page.url.split("/").length === 2)
