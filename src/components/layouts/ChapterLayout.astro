@@ -16,18 +16,20 @@ export interface ChapterFrontmatter {
     affiliations?: Record<string, string>[];
     published?: boolean;
     lastUpdated?: string;
+    citations?: string[];
 }
 
 const {
     content: { url = "", astro, ...frontmatter },
+    ...rest
 } = Astro.props;
 const parentUrl = url.split("/").slice(0, 2).join("/");
 
-console.log({ frontmatter, url });
+// console.log({ frontmatter, url, astro, rest });
 
 let chapterIndex = 1;
 
-const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.md");
+const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.mdx");
 const parts = pages
     .filter((page) => page.url.split("/").length === 2)
     .map((part, partIndex) => ({
@@ -43,10 +45,8 @@ const parts = pages
             })),
     }));
 
-const allChapters = parts.flatMap((part) => part.chapters);
-
+const allChapters = parts.flatMap((part) => part?.chapters);
 const part = parts.find((part) => part.url.startsWith(parentUrl));
-
 const thisChapter = part.chapters.find((chapter) => chapter.url === url);
 
 const thisChapterIndex = thisChapter.index;
@@ -71,8 +71,7 @@ const next =
         ? allChapters[thisChapterIndex]
         : null;
 
-const references = getCitations(thisChapter.rawContent());
-console.log({ references });
+const references = thisChapter.frontmatter.citations ?? [];
 ---
 
 <BaseLayout>
@@ -154,12 +153,18 @@ console.log({ references });
                 )
             }
 
-            <div>
-                <h3>References</h3>
-                <ul>
-                    {references.map((reference) => <li set:html={reference} />)}
-                </ul>
-            </div>
+            {
+                !!references.length && (
+                    <div>
+                        <h3>References</h3>
+                        <ul>
+                            {references.map((reference) => (
+                                <li set:html={reference} />
+                            ))}
+                        </ul>
+                    </div>
+                )
+            }
             <div>
                 <h3>Updates & Corrections</h3>
                 <p>

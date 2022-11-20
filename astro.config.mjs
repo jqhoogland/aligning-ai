@@ -13,6 +13,8 @@ import remarkSmartypants from "remark-smartypants";
 import rehypeStringify from "rehype-stringify";
 import rehypeRaw from "rehype-raw";
 import {visit} from "unist-util-visit";
+import { getReferences, extractCitations } from "remark-preset-obsidian";
+import bibliography from "./public/bibliography.json";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,7 +25,8 @@ export default defineConfig({
       external: ["@11ty/eleventy-img", "svgo"]
     }
   },
-  mdx: {
+  markdown: {
+    extendDefaultPlugins: true,
     remarkPlugins: [
       remarkSmartypants,
       remarkGfm,
@@ -49,14 +52,14 @@ export default defineConfig({
     ],
     rehypePlugins: [
       () => (tree) => {
-        visit(tree, "mdxJsxFlowElement", node => {
-          // node.type = "element";
-          // node.tagName = node.name;
-          // console.log(node)
-          console.log(node)
-        })
+        // console.log("HERE", JSON.stringify(tree, null, 2));
+        const citations = extractCitations(tree);
+        const references = getReferences(citations, bibliography).map(ref => ref.replace("↩️", "↩"));
+        visit(tree, "yaml", (node) => {
+           console.log(node);
+        });
       },
-      rehypeRaw,
+      // rehypeRaw,
       [rehypeKatex, {
         macros: {
           "\\RR": "\\mathbb{R}",
@@ -73,15 +76,6 @@ export default defineConfig({
         },
         trust: true
       }],
-      [rehypeStringify, {
-        // allowDangerousHtml: true
-      }]
     ],
-    remarkRehype: {
-      // allowDangerousHtml: true // careful!
-    },
   },
-  legacy: {
-    // astroFlavoredMarkdown: true // Better fit than mdx (because of reliance on remarkDirective)
-  }
 });
