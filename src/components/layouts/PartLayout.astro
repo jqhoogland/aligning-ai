@@ -1,6 +1,7 @@
 ---
 import Part from "../Part.astro";
 import BaseLayout from "./BaseLayout.astro";
+import { getHeadings } from "../../utils/toc";
 
 export interface PartFrontmatter {
     title: string;
@@ -22,7 +23,7 @@ const parts = pages
             .map((chapter) => ({
                 ...chapter,
                 index: chapterIndex++,
-                headings: chapter.getHeadings(),
+                headings: getHeadings(chapter),
             })),
     }));
 
