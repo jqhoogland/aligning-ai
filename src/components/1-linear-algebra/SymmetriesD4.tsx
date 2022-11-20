@@ -70,8 +70,8 @@ export default function SymmetriesD4() {
 
 
             {/* Cayley Table of D4 */}
-            <div class="overflow-x-auto">
-                <table class="text-sm">
+            <div class="overflow-x-auto -mx-2">
+                <table class="text-sm mx-2">
                     <thead>
                         <tr >
                             <th class="p-2" />
