@@ -70,33 +70,35 @@ export default function SymmetriesD4() {
 
 
             {/* Cayley Table of D4 */}
-            <table class="text-sm">
-                <thead>
-                    <tr >
-                        <th class="p-2" />
+            <div class="overflow-x-auto">
+                <table class="text-sm">
+                    <thead>
+                        <tr >
+                            <th class="p-2" />
+                            <For each={labels}>
+                                {((label, i) => (
+                                    <th onClick={applyState(i())} class={"btn btn-sm text-center rounded-sm hover:cursor-pointer"} innerHTML={label} />
+                                ))}
+                            </For>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <For each={labels}>
-                            {((label, i) => (
-                                <th onClick={applyState(i())} class={"btn btn-sm text-center rounded-sm hover:cursor-pointer"} innerHTML={label} />
-                            ))}
+                            {(rowLabel, i) => (
+                                <tr>
+                                    <th scope="row" innerHTML={rowLabel} onClick={updateState(i())} class={clsx("btn btn-sm text-center rounded-sm hover:cursor-pointer", state() === i() && "brightness-75")} />
+                                    <For each={labels}>
+                                        {(label, j) => (
+                                            <td innerHTML={labels[D4_CAYLEY_TABLE[i()][j()]]}
+                                                class={clsx("text-center", state() === j() && "brightness-75")} />
+                                        )}
+                                    </For>
+                                </tr>
+                            )}
                         </For>
-                    </tr>
-                </thead>
-                <tbody>
-                    <For each={labels}>
-                        {(rowLabel, i) => (
-                            <tr>
-                                <th scope="row" innerHTML={rowLabel} onClick={updateState(i())} class={clsx("btn btn-sm text-center rounded-sm hover:cursor-pointer", state() === i() && "brightness-75")} />
-                                <For each={labels}>
-                                    {(label, j) => (
-                                        <td innerHTML={labels[D4_CAYLEY_TABLE[i()][j()]]}
-                                            class={clsx("text-center", state() === j() && "brightness-75")} />
-                                    )}
-                                </For>
-                            </tr>
-                        )}
-                    </For>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
