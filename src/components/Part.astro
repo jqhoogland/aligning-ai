@@ -1,7 +1,6 @@
 ---
 import { MarkdownInstance, MarkdownHeading } from "astro";
 import { ChapterFrontmatter } from "./layouts/ChapterLayout.astro";
-import clsx from "clsx";
 import { Heading } from "~/utils/toc";
 
 export interface Props {
@@ -28,17 +27,17 @@ const { url, index, title, chapters, active } = Astro.props as Props;
     {
         chapters.map((chapter) => (
             <section
-                class={clsx(
+                class:list={
                     !chapter.frontmatter?.published &&
-                        "opacity-20 cursor-default"
-                )}
+                    "opacity-20 cursor-default"
+                }
             >
                 <a
                     href={chapter.frontmatter?.published && chapter.url}
-                    class={clsx(
+                    class:list={[
                         "block py-1 text-md font-bold",
-                        chapter.index === active && "text-blue-500"
-                    )}
+                        chapter.index === active && "text-blue-500",
+                    ]}
                 >
                     <div class="inline-block w-6">{chapter.index}</div>
                     {chapter.frontmatter.title}
@@ -51,10 +50,10 @@ const { url, index, title, chapters, active } = Astro.props as Props;
                                     chapter.frontmatter?.published &&
                                     `${chapter.url}#${slug}`
                                 }
-                                class={clsx(
+                                class:list={[
                                     "block py-1 text-sm",
-                                    chapter.index === active && "text-blue-500"
-                                )}
+                                    chapter.index === active && "text-blue-500",
+                                ]}
                             >
                                 <div class="inline-block w-6" />
                                 <div class="inline-block w-8">
