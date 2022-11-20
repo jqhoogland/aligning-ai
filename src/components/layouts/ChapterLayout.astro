@@ -18,8 +18,12 @@ export interface ChapterFrontmatter {
     lastUpdated?: string;
 }
 
-const { frontmatter, url } = Astro.props;
+const {
+    content: { url = "", astro, ...frontmatter },
+} = Astro.props;
 const parentUrl = url.split("/").slice(0, 2).join("/");
+
+console.log({ frontmatter, url });
 
 let chapterIndex = 1;
 

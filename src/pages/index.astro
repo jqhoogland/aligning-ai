@@ -2,11 +2,9 @@
 import BaseLayout from "~/components/layouts/BaseLayout.astro";
 import { PartFrontmatter } from "~/components/layouts/PartLayout.astro";
 import "~/styles/index.css";
-import clsx from "clsx";
 import Part from "~/components/Part.astro";
-import { getHeadings } from "~/utils/toc";
 
-const pages = await Astro.glob<PartFrontmatter>("./**/index.md");
+const pages = await Astro.glob<PartFrontmatter>("./**/index.mdx");
 
 let chapterIndex = 0;
 
@@ -19,7 +17,7 @@ const parts = pages
       .map((chapter) => ({
         ...chapter,
         index: chapterIndex++,
-        headings: getHeadings(chapter.rawContent()),
+        headings: chapter.getHeadings(),
       })),
   }));
 ---
