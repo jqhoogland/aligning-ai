@@ -42,17 +42,18 @@ export default defineConfig({
         enableAuthorSuppression: true,
         useNodeValue: false
       }
-    }], [remarkBibliography, {
-      bibliography: []
-    }]],
-    rehypePlugins: [() => tree => {
+    }],
+      () => (tree, file) => {
       // console.log("HERE", JSON.stringify(tree, null, 2));
       const citations = extractCitations(tree);
       const references = getReferences(citations, bibliography).map(ref => ref.replace("↩️", "↩"));
-      visit(tree, "yaml", node => {
-        console.log(node);
-      });
-    },
+      file.data.astro.frontmatter.citations = references;
+      },
+      [remarkBibliography, {
+      bibliography: []
+      }],
+      ],
+    rehypePlugins: [
     // rehypeRaw,
     [rehypeKatex, {
       macros: {

@@ -6,6 +6,7 @@ import { getHeadings } from "../../utils/toc";
 export interface PartFrontmatter {
     title: string;
     description: string;
+    citations?: string[];
 }
 
 const { frontmatter, url } = Astro.props;
