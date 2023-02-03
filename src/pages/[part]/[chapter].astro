@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import ChapterLayout from "~/components/layouts/ChapterLayout.astro";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    [];
+    const chapterEntries = await getCollection("chapter");
+    return chapterEntries.map((chapter) => ({
+        params: {
+            part: chapter.data.part,
+            chapter: chapter.slug.split("/").slice(-1)[0],
+        },
+        props: { chapter },
+    }));
+}
+// 2. When it's time to render, you can get the entry directly from the prop
+const { chapter } = Astro.props;
+const { Content } = await chapter.render();
+---
+
+<ChapterLayout {...chapter}>
+    {chapter.data.published ? <Content /> : <p>Coming soon!</p>}
+</ChapterLayout>

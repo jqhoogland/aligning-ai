@@ -1,26 +1,27 @@
 ---
-import { MarkdownInstance, MarkdownHeading } from "astro";
-import { ChapterFrontmatter } from "./layouts/ChapterLayout.astro";
-import { Heading } from "~/utils/toc";
+import { CollectionEntry } from "astro:content";
 
 export interface Props {
-    url?: string;
+    slug?: string;
     index?: number;
     title?: string;
-    chapters?: (MarkdownInstance<ChapterFrontmatter> & {
-        index: number;
-        headings: MarkdownHeading[];
-    })[];
+    chapters?: CollectionEntry<"chapter">[];
     active?: number;
 }
 
-const { url, index, title, chapters, active } = Astro.props as Props;
+const { slug, index, title, chapters, active } = Astro.props as Props;
+
+const getSlug = (text: string) =>
+    text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
 ---
 
 <section class="py-2">
-    <a href={url}>
+    <a href={slug}>
         <h2 class="text-xl font-bold pb-2">
-            {!!index && `Part ${index}.`}
+            <!-- {!!index && `Part ${index}.`} -->
             {title}
         </h2>
     </a>
@@ -28,36 +29,36 @@ const { url, index, title, chapters, active } = Astro.props as Props;
         chapters.map((chapter) => (
             <section
                 class:list={
-                    !chapter.frontmatter?.published &&
-                    "opacity-20 cursor-default"
+                    !chapter.data?.published && "opacity-20 cursor-default"
                 }
             >
                 <a
-                    href={chapter.frontmatter?.published && chapter.url}
+                    href={chapter.data?.published && chapter.slug}
                     class:list={[
                         "block py-1 text-md font-bold",
-                        chapter.index === active && "text-blue-500",
+                        chapter.data.index === active && "text-blue-500",
                     ]}
                 >
-                    <div class="inline-block w-6">{chapter.index}</div>
-                    {chapter.frontmatter.title}
+                    <div class="inline-block w-6">{chapter.data.index}</div>
+                    {chapter.data.title}
                 </a>
                 <ul>
-                    {chapter.headings.map(({ slug, text, depth }, i) => (
+                    {chapter.data.headings.map((text, i) => (
                         <li>
                             <a
                                 href={
-                                    chapter.frontmatter?.published &&
-                                    `${chapter.url}#${slug}`
+                                    chapter.data?.published &&
+                                    `${chapter.slug}#${getSlug(text)}`
                                 }
                                 class:list={[
                                     "block py-1 text-sm",
-                                    chapter.index === active && "text-blue-500",
+                                    chapter.data.index === active &&
+                                        "text-blue-500",
                                 ]}
                             >
                                 <div class="inline-block w-6" />
                                 <div class="inline-block w-8">
-                                    {chapter.index}.{i + 1}
+                                    {chapter.data.index}.{i + 1}
                                 </div>
                                 {text}
                             </a>

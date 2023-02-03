@@ -1,26 +1,21 @@
 ---
+import { getCollection, getEntryBySlug } from "astro:content";
 import BaseLayout from "~/components/layouts/BaseLayout.astro";
-import { PartFrontmatter } from "~/components/layouts/PartLayout.astro";
-import "~/styles/index.css";
 import Part from "~/components/Part.astro";
-import { getHeadings } from "~/utils/toc";
 
-const pages = await Astro.glob<PartFrontmatter>("./**/index.mdx");
-
-let chapterIndex = 0;
-
-const parts = pages
-  .filter((page) => page.url.split("/").length === 2)
-  .map((part) => ({
-    ...part,
-    chapters: pages
-      .filter((page) => page.url.startsWith(part.url) && page.url !== part.url)
-      .map((chapter) => ({
-        ...chapter,
-        index: chapterIndex++,
-        headings: getHeadings(chapter),
-      })),
-  }));
+const parts = await Promise.all(
+  (
+    await getCollection("part")
+  )
+    .filter((part) => part.data.published)
+    .map(async (part) => ({
+      ...part,
+      chapters: await getCollection(
+        "chapter",
+        ({ data }) => data.part === part.slug
+      ),
+    }))
+);
 ---
 
 <BaseLayout>
@@ -31,8 +26,8 @@ const parts = pages
       {
         parts.map((part, partIndex) => (
           <Part
-            url={part.url}
-            title={part.frontmatter.title}
+            slug={part.slug}
+            title={part.data.title}
             index={partIndex}
             chapters={part.chapters}
           />

@@ -8,78 +8,74 @@ import { createBibTex, getCitations } from "~/utils/citations";
 import Code from "../Code.astro";
 import Part from "../Part.astro";
 import Icon from "astro-icon";
+import { CollectionEntry, getCollection } from "astro:content";
 
-export interface ChapterFrontmatter {
-    title: string;
-    description: string;
-    authors?: Record<string, string>[];
-    affiliations?: Record<string, string>[];
-    published?: boolean;
-    lastUpdated?: string;
-    citations?: string[];
-}
+export type ChapterFrontmatter = CollectionEntry<"chapter">;
 
 const {
-    content: { url = "", astro, ...frontmatter },
+    data: { slug: url = "", astro, ...data },
+    slug,
     ...rest
 } = Astro.props;
 const parentUrl = url.split("/").slice(0, 2).join("/");
 
-// console.log({ frontmatter, url, astro, rest });
-
-let chapterIndex = 1;
-
-const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.mdx");
-const parts = pages
-    .filter((page) => page.url.split("/").length === 2)
-    .map((part, partIndex) => ({
-        ...part,
-        index: partIndex,
-        chapters: pages
-            .filter(
-                (page) => page.url.startsWith(part.url) && page.url !== part.url
-            )
-            .map((chapter) => ({
-                ...chapter,
-                index: chapterIndex++,
-            })),
-    }));
+const parts = await Promise.all(
+    (
+        await getCollection("part")
+    )
+        .filter((part) => part.data.published)
+        .map(async (part) => ({
+            ...part,
+            chapters: (
+                await getCollection(
+                    "chapter",
+                    ({ data }) => data.part === part.slug
+                )
+            ).filter((chapter) => chapter.data.published),
+        }))
+);
 
 const allChapters = parts.flatMap((part) => part?.chapters);
-const part = parts.find((part) => part.url.startsWith(parentUrl));
-const thisChapter = part.chapters.find((chapter) => chapter.url === url);
+const part = parts.find((part) => part.slug === data.part);
 
-const thisChapterIndex = thisChapter.index;
-
-const authors: { name: string; url: string }[] = (
-    frontmatter.authors ?? []
-).map((author) => ({
-    name: Object.keys(author)[0],
-    url: Object.values(author)[0],
-}));
+const authors: { name: string; url: string }[] = (data.authors ?? []).map(
+    (author) => ({
+        name: Object.keys(author)[0],
+        url: Object.values(author)[0],
+    })
+);
 
 const affiliations: { name: string; url: string }[] = (
-    frontmatter.affiliations ?? []
+    data.affiliations ?? []
 ).map((affiliation) => ({
     name: Object.keys(affiliation)[0],
     url: Object.values(affiliation)[0],
 }));
 
-const prev = thisChapterIndex > 1 ? allChapters[thisChapterIndex - 2] : null;
+const thisChapterIndex = data.index;
+const prev = thisChapterIndex >= 1 ? allChapters[thisChapterIndex - 1] : null;
 const next =
     thisChapterIndex < allChapters.length
-        ? allChapters[thisChapterIndex]
+        ? allChapters[thisChapterIndex + 1]
         : null;
 
-const references = thisChapter.frontmatter.citations ?? [];
+const references = data.citations ?? [];
+
+if (next) {
+    next.slug = `/${next.slug}`;
+}
+
+if (prev) {
+    prev.slug = `/${prev.slug}`;
+}
 ---
 
 <BaseLayout>
     <div class="container">
         <nav class="flex pb-4">
             {
-                prev?.frontmatter?.published ? (
-                    <a href={prev.url} class="w-6 h-6 md:-ml-6">
+                prev?.data?.published ? (
+                    <a href={prev.slug} class="w-6 h-6 md:-ml-6">
                         <Icon name="ic:outline-chevron-left" />
                     </a>
                 ) : (
@@ -88,13 +84,13 @@ const references = thisChapter.frontmatter.citations ?? [];
             }
             <div>
                 <a class="font-bold text-sm" href="/">Aligning AI</a> :
-                <a class="font-bold text-sm" href={part.url}
-                    >{part.frontmatter?.title}</a
+                <a class="font-bold text-sm" href={part.slug}
+                    >{part.data?.title}</a
                 >
             </div>
             {
-                next?.frontmatter?.published ? (
-                    <a href={next.url} class="w-6 h-6">
+                next?.data?.published ? (
+                    <a href={next.slug} class="w-6 h-6">
                         <Icon name="ic:outline-chevron-right" />
                     </a>
                 ) : (
@@ -103,14 +99,14 @@ const references = thisChapter.frontmatter.citations ?? [];
             }
         </nav>
         <h1 class="text-4xl font-bold flex-1">
-            {thisChapterIndex}
-            {frontmatter.title}
+            {data.index}
+            {data.title}
         </h1>
     </div>
     <ByLine
         authors={authors}
         affiliations={affiliations}
-        lastUpdated={frontmatter.lastUpdated}
+        lastUpdated={data.lastUpdated}
         url={url}
     />
     <div class="container">
@@ -121,20 +117,20 @@ const references = thisChapter.frontmatter.citations ?? [];
     <hr />
     <section class="container flex flex-wrap justify-between gap-4">
         {
-            prev?.frontmatter?.published ? (
+            prev?.data?.published ? (
                 <div>
                     <h3 class="font-bold">Previous:</h3>
-                    <a href={prev.url}>{prev.frontmatter?.title}</a>
+                    <a href={prev.slug}>{prev.data?.title}</a>
                 </div>
             ) : (
                 <div />
             )
         }
         {
-            next?.frontmatter?.published ? (
+            next?.data?.published ? (
                 <div>
                     <h3 class="font-bold">Next:</h3>
-                    <a href={next.url}>{next.frontmatter?.title}</a>
+                    <a href={next.slug}>{next.data?.title}</a>
                 </div>
             ) : (
                 <div />
@@ -145,10 +141,10 @@ const references = thisChapter.frontmatter.citations ?? [];
     <section class="container">
         <div class="prose prose-sm text-zinc-500">
             {
-                frontmatter.acknowledgments && (
+                data.acknowledgments && (
                     <div>
                         <h3>Acknowledgments</h3>
-                        <p>{frontmatter.acknowledgments}</p>
+                        <p>{data.acknowledgments}</p>
                     </div>
                 )
             }
@@ -192,10 +188,10 @@ const references = thisChapter.frontmatter.citations ?? [];
                 <h3>Citation</h3>
                 <Code
                     value={createBibTex({
-                        title: frontmatter.title,
+                        title: data.title,
                         authors,
                         url,
-                        lastUpdated: frontmatter.lastUpdated,
+                        lastUpdated: data.lastUpdated,
                     })}
                 />
             </div>

@@ -1,5 +1,0 @@
-[packages]
-torch = "*"
-einops = "*"
-numpy = "*"
-typeguard = "*"

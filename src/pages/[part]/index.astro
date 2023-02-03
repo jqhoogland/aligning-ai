@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import PartLayout from "~/components/layouts/PartLayout.astro";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    [];
+    const partEntries = await getCollection("part");
+    return partEntries.map((part) => ({
+        params: { part: part.slug },
+        props: { part },
+    }));
+}
+// 2. When it's time to render, you can get the entry directly from the prop
+const { part } = Astro.props;
+const { Content } = await part.render();
+---
+
+<PartLayout {...part}>
+<Content />
+</PartLayout>

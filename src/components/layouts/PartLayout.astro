@@ -2,33 +2,29 @@
 import Part from "../Part.astro";
 import BaseLayout from "./BaseLayout.astro";
 import { getHeadings } from "../../utils/toc";
+import { CollectionEntry, getCollection } from "astro:content";
 
-export interface PartFrontmatter {
-    title: string;
-    description: string;
-    citations?: string[];
-}
+export type PartFrontmatter = CollectionEntry<"part">;
 
-const { frontmatter, url } = Astro.props;
+const { data, slug } = Astro.props;
 
-const pages = await Astro.glob<PartFrontmatter>("../../pages/**/index.mdx");
-let chapterIndex = 1;
-const parts = pages
-    .filter((page) => page.url.split("/").length === 2)
-    .map((part) => ({
-        ...part,
-        chapters: pages
-            .filter(
-                (page) => page.url.startsWith(part.url) && page.url !== part.url
-            )
-            .map((chapter) => ({
-                ...chapter,
-                index: chapterIndex++,
-                headings: getHeadings(chapter),
-            })),
-    }));
+const parts = await Promise.all(
+    (
+        await getCollection("part")
+    )
+        .filter((part) => part.data.published)
+        .map(async (part) => ({
+            ...part,
+            chapters: (
+                await getCollection(
+                    "chapter",
+                    ({ data }) => data.part === part.slug
+                )
+            ).filter((chapter) => chapter.data.published),
+        }))
+);
 
-const part = parts.find((part) => part.url === url);
+const part = parts.find((part) => part.slug === slug);
 const chapters = part.chapters;
 ---
 
@@ -37,7 +33,7 @@ const chapters = part.chapters;
         <nav class="pb-4">
             <a class="font-bold" href="/">Aligning AI</a>
         </nav>
-        <Part title={frontmatter.title} chapters={chapters} />
+        <Part title={data.title} chapters={chapters} />
         <slot />
     </div>
 </BaseLayout>
